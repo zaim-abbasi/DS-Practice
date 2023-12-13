@@ -47,31 +47,31 @@ public:
         return node;
     }
 
-    Node *rightRotate(Node *y)
+    Node *rightRotate(Node *x)
     {
-        Node *x = y->left;
-        Node *T2 = x->right;
+        Node *y = x->left;
+        Node *Yr = y->right;
 
         // Perform rotation
-        x->right = y;
-        y->left = T2;
+        y->right = x;
+        x->left = Yr;
 
         // Update heights
-        y->height = max(height(y->left), height(y->right)) + 1;
         x->height = max(height(x->left), height(x->right)) + 1;
+        y->height = max(height(y->left), height(y->right)) + 1;
 
         // Return new root
-        return x;
+        return y;
     }
 
     Node *leftRotate(Node *x)
     {
         Node *y = x->right;
-        Node *T2 = y->left;
+        Node *Yl = y->left;
 
         // Perform rotation
         y->left = x;
-        x->right = T2;
+        x->right = Yl;
 
         // Update heights
         x->height = max(height(x->left), height(x->right)) + 1;
@@ -120,15 +120,18 @@ public:
 
         // If this node becomes unbalanced, then there are 4 cases
 
-        // Left Left Case
+        // Left Left Case, left me zyada lamba hai
+        // yani key jo ha, node ke left ke left mei hai
         if (balance > 1 && key < node->left->key)
             return rightRotate(node);
 
-        // Right Right Case
+        // Right Right Case, right me zyada lamba hai
+        // yani key jo ha, node ke right ke right mei hai
         if (balance < -1 && key > node->right->key)
             return leftRotate(node);
 
         // Left Right Case
+        // yani ke key us node ke left se bari hai
         if (balance > 1 && key > node->left->key)
         {
             node->left = leftRotate(node->left);
@@ -136,6 +139,7 @@ public:
         }
 
         // Right Left Case
+        // yani ke key us node ke right se bari hai
         if (balance < -1 && key < node->right->key)
         {
             node->right = rightRotate(node->right);

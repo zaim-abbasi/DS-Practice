@@ -50,7 +50,7 @@ public:
                         nodePtr = nodePtr->left;
                     }
                 }
-                else
+                if(data > nodePtr->data)
                 {
                     if (nodePtr->right == NULL)
                     {
@@ -139,6 +139,7 @@ public:
         }
         return temp;
     }
+    
     Node *Delete(Node *root, int data)
     {
         if (root == nullptr)
@@ -249,6 +250,7 @@ public:
             counter++;
         RecursiveCounter(root->right, x, counter);
     }
+    
     void Smaller(Node*root, int x)
     {
         int counter = 0;

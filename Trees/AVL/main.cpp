@@ -163,18 +163,32 @@ public:
 
 int main()
 {
+    // full fledged menu
     AVL tree;
-    int n;
-    cout << "Enter the number of nodes: ";
-    cin >> n;
-    for (int i = 0; i < n; i++)
+    int choice, key;
+    while (1)
     {
-        int key;
-        cout << "Enter the key: ";
-        cin >> key;
-        tree.root = tree.insert(tree.root, key);
+        cout << "1. Insert" << endl;
+        cout << "2. Preorder" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter key: ";
+            cin >> key;
+            tree.root = tree.insert(tree.root, key);
+            break;
+        case 2:
+            tree.preOrder(tree.root);
+            cout << endl;
+            break;
+        case 3:
+            exit(0);
+        default:
+            cout << "Invalid choice" << endl;
+        }
     }
-    cout << "Preorder traversal of the constructed AVL tree is \n";
-    tree.preOrder(tree.root);
     return 0;
 }

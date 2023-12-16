@@ -4,15 +4,15 @@ using namespace std;
 int main()
 {
     Library l;
-    main:
-    cout<<"Welcome to the Library Management System"<<endl;
-    cout<<"1. Enter a book to the record"<<endl;
-    cout<<"2. Remove a book from the record"<<endl;
-    cout<<"3. Display all books in the record"<<endl;
-    cout<<"4. Exit"<<endl;
-    cout<<"Enter your choice: ";
+main:
+    cout << "Welcome to the Library Management System" << endl;
+    cout << "1. Enter a book to the record" << endl;
+    cout << "2. Remove a book from the record" << endl;
+    cout << "3. Display all books in the record" << endl;
+    cout << "4. Exit" << endl;
+    cout << "Enter your choice: ";
     int choice;
-    cin>>choice;
+    cin >> choice;
     switch (choice)
     {
     case 1:
@@ -28,7 +28,7 @@ int main()
         exit(0);
         break;
     default:
-        cout<<"Invalid Choice"<<endl;
+        cout << "Invalid Choice" << endl;
         goto main;
     }
 }

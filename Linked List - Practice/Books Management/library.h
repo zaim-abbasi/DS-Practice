@@ -37,25 +37,25 @@ public:
 
     void RemoveBook()
     {
-        //remove by title
+        // remove by title
         string title;
         cout << "Enter Title to remove: ";
         cin >> title;
         Node *temp = head;
         Node *curr = head;
         Node *prev = nullptr;
-        while(temp->getBookObj().getTitle() != title && temp != NULL)
+        while (temp->getBookObj().getTitle() != title && temp != NULL)
         {
             prev = curr;
             curr = temp;
             temp = temp->getNext();
         }
 
-        if(temp->getBookObj().getTitle() == title)
+        if (temp->getBookObj().getTitle() == title)
         {
-            //remove here
+            // remove here
             cout << "Book Found" << endl;
-            if(temp == head)
+            if (temp == head)
             {
                 head = head->getNext();
                 delete temp;
@@ -68,8 +68,7 @@ public:
             counter--;
         }
         else
-        cout << "No such book found" << endl;
-
+            cout << "No such book found" << endl;
     }
     void Display()
     {
@@ -78,7 +77,7 @@ public:
         Node *temp = head;
         while (count < counter)
         {
-            cout << "Book " << count+1 << " : " << endl;
+            cout << "Book " << count + 1 << " : " << endl;
             cout << "Title: " << temp->getBookObj().getTitle() << endl;
             cout << "Author: " << temp->getBookObj().getAuthor() << endl;
             cout << "IBAN: " << temp->getBookObj().GetIbanNum() << endl;

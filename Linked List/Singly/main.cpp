@@ -98,27 +98,5 @@ void Display(Node* &head)
 }
 int main()
 {
-    Node *n1 = new Node(10);
-    Node *head = n1;
-    Node *tail = n1;
-
-    InsertHead(head, 5);
-    Display(head);
-
-    InsertTail(tail, 15);
-    Display(head);
-
-    InsertMiddle(head, tail, 2, 50);
-
-    Display(head);
-
-    InsertMiddle(head, tail, 5, 100);
-
-    Display(head);
-
-    Remove(head, 1);
-    Display(head);
-
-    Remove(head, 4);
-    Display(head);
+    // full fledge menu driven program
 }

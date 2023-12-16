@@ -1,10 +1,12 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class Node{
+class Node
+{
 public:
     int data;
     Node *next;
-    Node(){
+    Node()
+    {
         data = 0;
         next = nullptr;
     }
@@ -15,21 +17,21 @@ public:
     }
 };
 
-void InsertHead(Node* &head, int data)
+void InsertHead(Node *&head, int data)
 {
     Node *temp = new Node(data);
     temp->next = head;
     head = temp;
 }
-void InsertTail(Node* &tail, int data)
+void InsertTail(Node *&tail, int data)
 {
     Node *temp = new Node(data);
     tail->next = temp;
     tail = temp;
 }
-void InsertMiddle(Node* &head,Node* &tail, int position, int data)
+void InsertMiddle(Node *&head, Node *&tail, int position, int data)
 {
-    if(position == 1)
+    if (position == 1)
     {
         InsertHead(head, data);
         return;
@@ -37,13 +39,13 @@ void InsertMiddle(Node* &head,Node* &tail, int position, int data)
     Node *temp = head;
     int count = 1;
 
-    while(count < position-1)
+    while (count < position - 1)
     {
         temp = temp->next;
         count++;
     }
 
-    if(temp ->next == nullptr)
+    if (temp->next == nullptr)
     {
         InsertTail(tail, data);
         return;
@@ -52,15 +54,14 @@ void InsertMiddle(Node* &head,Node* &tail, int position, int data)
     Node *node1 = new Node(data);
     node1->next = temp->next;
     temp->next = node1;
-    
 }
 
-void Remove(Node*& head, int position)
+void Remove(Node *&head, int position)
 {
     // delete by position
-    if(position == 1)
+    if (position == 1)
     {
-        //deleting first node
+        // deleting first node
         Node *temp = head;
         temp = temp->next;
         head = temp;
@@ -74,7 +75,7 @@ void Remove(Node*& head, int position)
         Node *prev = nullptr;
 
         int cnt = 1;
-        while(cnt < position)
+        while (cnt < position)
         {
             prev = curr;
             curr = curr->next;
@@ -86,10 +87,10 @@ void Remove(Node*& head, int position)
         delete curr;
     }
 }
-void Display(Node* &head)
+void Display(Node *&head)
 {
     Node *temp = head;
-    while(temp != nullptr)
+    while (temp != nullptr)
     {
         cout << temp->data << " ";
         temp = temp->next;
@@ -112,62 +113,62 @@ int main()
         cout << "6. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
-        switch(choice)
+        switch (choice)
         {
-            case 1:
+        case 1:
+        {
+            int data;
+            cout << "Enter data: ";
+            cin >> data;
+            InsertHead(head, data);
+            if (tail == nullptr)
             {
-                int data;
-                cout << "Enter data: ";
-                cin >> data;
-                InsertHead(head, data);
-                if(tail == nullptr)
-                {
-                    tail = head;
-                }
-                break;
+                tail = head;
             }
-            case 2:
-            {
-                int data;
-                cout << "Enter data: ";
-                cin >> data;
-                InsertTail(tail, data);
-                break;
-            }
-            case 3:
-            {
-                int data, position;
-                cout << "Enter data: ";
-                cin >> data;
-                cout << "Enter position: ";
-                cin >> position;
-                InsertMiddle(head, tail, position, data);
-                break;
-            }
-            case 4:
-            {
-                int position;
-                cout << "Enter position: ";
-                cin >> position;
-                Remove(head, position);
-                break;
-            }
-            case 5:
-            {
-                Display(head);
-                break;
-            }
-            case 6:
-            {
-                cout << "Exiting..." << endl;
-                break;
-            }
-            default:
-            {
-                cout << "Invalid choice" << endl;
-                break;
-            }
+            break;
         }
-    }while(choice != 6);
+        case 2:
+        {
+            int data;
+            cout << "Enter data: ";
+            cin >> data;
+            InsertTail(tail, data);
+            break;
+        }
+        case 3:
+        {
+            int data, position;
+            cout << "Enter data: ";
+            cin >> data;
+            cout << "Enter position: ";
+            cin >> position;
+            InsertMiddle(head, tail, position, data);
+            break;
+        }
+        case 4:
+        {
+            int position;
+            cout << "Enter position: ";
+            cin >> position;
+            Remove(head, position);
+            break;
+        }
+        case 5:
+        {
+            Display(head);
+            break;
+        }
+        case 6:
+        {
+            cout << "Exiting..." << endl;
+            break;
+        }
+        default:
+        {
+            cout << "Invalid choice" << endl;
+            break;
+        }
+        }
+    } while (choice != 6);
     return 0;
 }

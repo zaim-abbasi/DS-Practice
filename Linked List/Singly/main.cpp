@@ -99,4 +99,75 @@ void Display(Node* &head)
 int main()
 {
     // full fledge menu driven program
+    Node *head = nullptr;
+    Node *tail = nullptr;
+    int choice;
+    do
+    {
+        cout << "1. Insert Head" << endl;
+        cout << "2. Insert Tail" << endl;
+        cout << "3. Insert Middle" << endl;
+        cout << "4. Remove" << endl;
+        cout << "5. Display" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch(choice)
+        {
+            case 1:
+            {
+                int data;
+                cout << "Enter data: ";
+                cin >> data;
+                InsertHead(head, data);
+                if(tail == nullptr)
+                {
+                    tail = head;
+                }
+                break;
+            }
+            case 2:
+            {
+                int data;
+                cout << "Enter data: ";
+                cin >> data;
+                InsertTail(tail, data);
+                break;
+            }
+            case 3:
+            {
+                int data, position;
+                cout << "Enter data: ";
+                cin >> data;
+                cout << "Enter position: ";
+                cin >> position;
+                InsertMiddle(head, tail, position, data);
+                break;
+            }
+            case 4:
+            {
+                int position;
+                cout << "Enter position: ";
+                cin >> position;
+                Remove(head, position);
+                break;
+            }
+            case 5:
+            {
+                Display(head);
+                break;
+            }
+            case 6:
+            {
+                cout << "Exiting..." << endl;
+                break;
+            }
+            default:
+            {
+                cout << "Invalid choice" << endl;
+                break;
+            }
+        }
+    }while(choice != 6);
+    return 0;
 }

@@ -50,7 +50,7 @@ public:
                         nodePtr = nodePtr->left;
                     }
                 }
-                if(data > nodePtr->data)
+                if (data > nodePtr->data)
                 {
                     if (nodePtr->right == NULL)
                     {
@@ -139,7 +139,7 @@ public:
         }
         return temp;
     }
-    
+
     Node *Delete(Node *root, int data)
     {
         if (root == nullptr)
@@ -147,24 +147,24 @@ public:
             return root;
         }
 
-        if(root->data == data)
+        if (root->data == data)
         {
-            //0th child
-            if(root->left == NULL && root->right == NULL)
-                {
-                    delete root;
-                    return NULL;
-                }
-            //1 child
+            // 0th child
+            if (root->left == NULL && root->right == NULL)
+            {
+                delete root;
+                return NULL;
+            }
+            // 1 child
 
-            //left child
-            if(root->left != NULL && root->right == NULL)
+            // left child
+            if (root->left != NULL && root->right == NULL)
             {
                 Node *temp = root->left;
                 delete root;
                 return temp;
             }
-            //right child
+            // right child
             if (root->right != NULL && root->left == NULL)
             {
                 Node *temp = root->right;
@@ -172,8 +172,8 @@ public:
                 return temp;
             }
 
-            //2 child
-            if(root->left != NULL && root->right != NULL)
+            // 2 child
+            if (root->left != NULL && root->right != NULL)
             {
                 int min = FindMin(root->right)->data;
                 root->data = min;
@@ -195,11 +195,6 @@ public:
             root->right = Delete(root->right, data);
             return root;
         }
-
-
-
-
-
 
         // else if (data < root->data)
         // {
@@ -241,17 +236,17 @@ public:
         // }
     }
 
-    int RecursiveCounter(Node*root, int x, int counter)
+    int RecursiveCounter(Node *root, int x, int counter)
     {
-        if(root == NULL)
+        if (root == NULL)
             return counter;
         RecursiveCounter(root->left, x, counter);
-        if(root->data < x)
+        if (root->data < x)
             counter++;
         RecursiveCounter(root->right, x, counter);
     }
-    
-    void Smaller(Node*root, int x)
+
+    void Smaller(Node *root, int x)
     {
         int counter = 0;
         cout << RecursiveCounter(root, x, counter) << endl;
@@ -268,5 +263,4 @@ int main()
     t.Insert(25);
 
     t.Smaller(t.root, 20);
-
 }

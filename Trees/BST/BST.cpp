@@ -254,13 +254,5 @@ public:
 };
 int main()
 {
-    Tree t;
-    t.Insert(10);
-    t.Insert(20);
-    t.Insert(30);
-    t.Insert(5);
-    t.Insert(15);
-    t.Insert(25);
-
-    t.Smaller(t.root, 20);
+    // full menu driven program
 }

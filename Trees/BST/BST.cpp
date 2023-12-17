@@ -255,4 +255,54 @@ public:
 int main()
 {
     // full fledged menu driven program
+    Tree t;
+    int choice;
+    int data;
+    while (1)
+    {
+        cout << "1. Insert" << endl;
+        cout << "2. Search" << endl;
+        cout << "3. Delete" << endl;
+        cout << "4. Smaller" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter data: ";
+            cin >> data;
+            t.Insert(data);
+            break;
+        case 2:
+            cout << "Enter data: ";
+            cin >> data;
+            if (t.Search(t.root, data))
+            {
+                cout << "Found" << endl;
+            }
+            else
+            {
+                cout << "Not Found" << endl;
+            }
+            break;
+        case 3:
+            cout << "Enter data: ";
+            cin >> data;
+            t.Delete(t.root, data);
+            break;
+        case 4:
+            cout << "Enter data: ";
+            cin >> data;
+            t.Smaller(t.root, data);
+            break;
+        case 5:
+            exit(0);
+            break;
+        default:
+            cout << "Invalid Choice" << endl;
+            break;
+        }
+    }
+    return 0;
 }

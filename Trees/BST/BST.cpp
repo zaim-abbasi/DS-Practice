@@ -254,5 +254,5 @@ public:
 };
 int main()
 {
-    // full menu driven program
+    // full fledged menu driven program
 }

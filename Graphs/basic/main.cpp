@@ -50,6 +50,21 @@ public:
 
     void PrintMaze()
     {
+        // display the maze in a 2D grid format using colors to show the path. Show the connection from a node to another node using a line. 
+        
+
+        for (int i = 0; i < numVertices; i++)
+        {
+            cout << i << " : ";
+            for (int j = 0; j < numVertices; j++)
+            {
+                cout << adjMatrix[i][j] << " ";
+            }
+            cout << endl;
+        }
+
+        cout << endl;
+
         for (int i = 0; i < numVertices; i++)
         {
             cout << i << " : ";
@@ -57,15 +72,51 @@ public:
             {
                 if (adjMatrix[i][j] == 1)
                 {
-                    cout << "X ";
+                    cout << "----";
                 }
                 else
                 {
-                    cout << "  ";
+                    cout << "    ";
+                }
+            }
+            cout << endl;
+            cout << "     ";
+            for (int j = 0; j < numVertices; j++)
+            {
+                if (adjMatrix[i][j] == 1)
+                {
+                    cout << "|   ";
+                }
+                else
+                {
+                    cout << "    ";
                 }
             }
             cout << endl;
         }
+
+        cout << endl;
+
+        for (int i = 0; i < numVertices; i++)
+        {
+            cout << i << " : ";
+            for (int j = 0; j < numVertices; j++)
+            {
+                if (adjMatrix[i][j] == 1)
+                {
+                    cout << "----";
+                }
+                else
+                {
+                    cout << "    ";
+                }
+            }
+            cout << endl;
+        }
+
+        cout << endl;
+
+        
 
     }
 

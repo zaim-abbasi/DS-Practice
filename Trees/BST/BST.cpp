@@ -100,7 +100,6 @@ public:
         return false;
     }
 
-    #include <iostream>
 
     Node *FindMin(Node *root)
     {
@@ -114,58 +113,40 @@ public:
 
     Node *Delete(Node *root, int data)
     {
-        if (root == nullptr)
-        {
+        if(root == NULL)
             return root;
-        }
-
-        if (root->data == data)
-        {
-            // 0th child
-            if (root->left == NULL && root->right == NULL)
-            {
-                delete root;
-                return NULL;
-            }
-            // 1 child
-
-            // left child
-            if (root->left != NULL && root->right == NULL)
-            {
-                Node *temp = root->left;
-                delete root;
-                return temp;
-            }
-            // right child
-            if (root->right != NULL && root->left == NULL)
-            {
-                Node *temp = root->right;
-                delete root;
-                return temp;
-            }
-
-            // 2 child
-            if (root->left != NULL && root->right != NULL)
-            {
-                int min = FindMin(root->right)->data;
-                root->data = min;
-
-                root->right = Delete(root->right, min);
-                return root;
-            }
-        }
-
-        else if (root->data > data)
-        {
-            // left me chale jao
+        else if(data < root->data)
             root->left = Delete(root->left, data);
-            return root;
-        }
+        else if(data > root->data)
+            root->right = Delete(root->right, data);
         else
         {
-            // right me chale jao
-            root->right = Delete(root->right, data);
-            return root;
+            // Case 1: No Child
+            if(root->left == NULL && root->right == NULL)
+            {
+                delete root;
+                root = NULL;
+            }
+            // Case 2: One Child
+            else if(root->left == NULL)
+            {
+                Node *temp = root;
+                root = root->right;
+                delete temp;
+            }
+            else if(root->right == NULL)
+            {
+                Node *temp = root;
+                root = root->left;
+                delete temp;
+            }
+            // Case 3: Two Children
+            else
+            {
+                Node *temp = FindMin(root->right);
+                root->data = temp->data;
+                root->right = Delete(root->right, temp->data);
+            }
         }
     }
 
@@ -187,6 +168,33 @@ public:
         int counter = 0;
         cout << RecursiveCounter(root, x, counter) << endl;
     }
+
+    // count number of nodes in a tree
+    int NodeCounter(Node* root, int counter)
+    {
+        if(root == NULL)
+            return counter;
+        counter = NodeCounter(root->left, counter);
+        counter++;
+        counter = NodeCounter(root->right, counter);
+
+        return counter; // Add return statement
+    }
+
+    void NodeCount(Node* root)
+    {
+        cout << "Total Nodes are " << NodeCounter(root, 0) << endl;
+    }
+
+    void display(Node *root)
+    {
+        if (root == NULL)
+            return;
+        display(root->left);
+        cout << root->data << " ";
+        display(root->right);
+    }
+
 };
 
 int main()
@@ -199,7 +207,7 @@ int main()
     {
         cout << "1. Insert" << endl;
         cout << "2. Search" << endl;
-        cout << "3. Delete" << endl;
+        cout << "3. Node Counter" << endl;
         cout << "4. Smaller" << endl;
         cout << "5. Exit" << endl;
         cout << "Enter your choice: ";
@@ -224,9 +232,7 @@ int main()
             }
             break;
         case 3:
-            cout << "Enter data: ";
-            cin >> data;
-            // t.Delete(t.root, data);
+            t.NodeCount(t.root);
             break;
         case 4:
             cout << "Enter data: ";

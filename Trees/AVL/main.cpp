@@ -50,11 +50,11 @@ public:
     Node *rightRotate(Node *x)
     {
         Node *y = x->left;
-        Node *Yr = y->right;
+        Node *YR = y->right;
 
         // Perform rotation
         y->right = x;
-        x->left = Yr;
+        x->left = YR;
 
         // Update heights
         x->height = max(height(x->left), height(x->right)) + 1;

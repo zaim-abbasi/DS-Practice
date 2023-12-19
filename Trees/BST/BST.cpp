@@ -87,48 +87,20 @@ public:
         return true;
     }
 
-    bool SearchRecurcive(Node *root, int data)
-    {
-        if (root == nullptr)
-        {
-            return false;
-        }
-        if (data == root->data)
-        {
-            return true;
-        }
-        else if (data < root->data)
-        {
-            return SearchRecurcive(root->left, data);
-        }
-        else
-        {
-            return SearchRecurcive(root->right, data);
-        }
-    }
-
     bool Search(Node *root, int data)
     {
-        Node *temp = root;
-        while (temp)
-        {
-            if (temp->data == data)
-            {
-                return true;
-            }
-
-            if (data < temp->data)
-            {
-                temp = temp->left;
-            }
-
-            if (data > temp->data)
-            {
-                temp = temp->right;
-            }
-        }
+        if (root == NULL)
+            return false;
+        if (Search(root->left, data))
+            return true;
+        if (root->data == data)
+            return true;
+        if (Search(root->right, data))
+            return true;
         return false;
     }
+
+    #include <iostream>
 
     Node *FindMin(Node *root)
     {
@@ -140,72 +112,74 @@ public:
         return temp;
     }
 
-    Node *Delete(Node *root, int data)
-    {
-        if (root == nullptr)
-        {
-            return root;
-        }
+    // Node *Delete(Node *root, int data)
+    // {
+    //     if (root == nullptr)
+    //     {
+    //         return root;
+    //     }
 
-        if (root->data == data)
-        {
-            // 0th child
-            if (root->left == NULL && root->right == NULL)
-            {
-                delete root;
-                return NULL;
-            }
-            // 1 child
+    //     if (root->data == data)
+    //     {
+    //         // 0th child
+    //         if (root->left == NULL && root->right == NULL)
+    //         {
+    //             delete root;
+    //             return NULL;
+    //         }
+    //         // 1 child
 
-            // left child
-            if (root->left != NULL && root->right == NULL)
-            {
-                Node *temp = root->left;
-                delete root;
-                return temp;
-            }
-            // right child
-            if (root->right != NULL && root->left == NULL)
-            {
-                Node *temp = root->right;
-                delete root;
-                return temp;
-            }
+    //         // left child
+    //         if (root->left != NULL && root->right == NULL)
+    //         {
+    //             Node *temp = root->left;
+    //             delete root;
+    //             return temp;
+    //         }
+    //         // right child
+    //         if (root->right != NULL && root->left == NULL)
+    //         {
+    //             Node *temp = root->right;
+    //             delete root;
+    //             return temp;
+    //         }
 
-            // 2 child
-            if (root->left != NULL && root->right != NULL)
-            {
-                int min = FindMin(root->right)->data;
-                root->data = min;
+    //         // 2 child
+    //         if (root->left != NULL && root->right != NULL)
+    //         {
+    //             int min = FindMin(root->right)->data;
+    //             root->data = min;
 
-                root->right = Delete(root->right, min);
-                return root;
-            }
-        }
+    //             root->right = Delete(root->right, min);
+    //             return root;
+    //         }
+    //     }
 
-        else if (root->data > data)
-        {
-            // left me chale jao
-            root->left = Delete(root->left, data);
-            return root;
-        }
-        else
-        {
-            // right me chale jao
-            root->right = Delete(root->right, data);
-            return root;
-        }
-
-    }
+    //     else if (root->data > data)
+    //     {
+    //         // left me chale jao
+    //         root->left = Delete(root->left, data);
+    //         return root;
+    //     }
+    //     else
+    //     {
+    //         // right me chale jao
+    //         root->right = Delete(root->right, data);
+    //         return root;
+    //     }
+    // }
 
     int RecursiveCounter(Node *root, int x, int counter)
     {
         if (root == NULL)
             return counter;
-        RecursiveCounter(root->left, x, counter);
         if (root->data < x)
+        {
             counter++;
-        RecursiveCounter(root->right, x, counter);
+        }
+        counter = RecursiveCounter(root->left, x, counter);
+        counter = RecursiveCounter(root->right, x, counter);
+        return counter;
     }
 
     void Smaller(Node *root, int x)
@@ -252,7 +226,7 @@ int main()
         case 3:
             cout << "Enter data: ";
             cin >> data;
-            t.Delete(t.root, data);
+            // t.Delete(t.root, data);
             break;
         case 4:
             cout << "Enter data: ";

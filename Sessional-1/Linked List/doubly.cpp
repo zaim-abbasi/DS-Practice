@@ -60,21 +60,30 @@ void InsertMiddle(Node* &head, int position, int data)
 
 void DeleteNode(Node* &head, int position)
 {
-    Node *temp = head;
-    Node *current = head;
-    Node *prev = nullptr;
-    int counter = 1;
-    while(counter < position)
+    if(position == 1)
     {
-        prev = current;
-        current = current->next;
-        counter++;
+        Node *temp = head;
+        head = head->next;
+        head->prev = nullptr;
+        delete temp;
+        return;
     }
-    prev->next = current->next;
-    current->next->prev = prev;
-
-    current = nullptr;
-    delete current;
+    else
+    {
+        Node *temp = head;
+        int counter = 1;
+        while (counter < position - 1)
+        {
+            temp = temp->next;
+            counter++;
+        }
+        Node *temp2 = temp->next;
+        temp->next = temp2->next;
+        temp2->next->prev = temp;
+        delete temp2;
+    
+    }
+    
 }
 void Display(Node* &head)
 {

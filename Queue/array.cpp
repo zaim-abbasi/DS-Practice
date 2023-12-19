@@ -41,8 +41,8 @@ public:
                 cout << "Queue is Full" << endl;
                 return;
             }
-            // rear = (rear + 1) % queueSize;
-            rear == size - 1 ? rear = 0 : rear++;
+            rear = (rear + 1) % size;
+            
             arr[rear] = num;
             numCounter++;
     }
@@ -55,7 +55,7 @@ public:
             cout << "Queue is Empty" << endl;
             return;
         }
-        front == size - 1 ? front = 0 : front++;
+        front = (front + 1) % size;
         numCounter--;
     }
 

@@ -56,9 +56,9 @@ void InsertMiddle(Node *&head, Node *&tail, int position, int data)
     temp->next = node1;
 }
 
-void Remove(Node *&head, int position)
+void Remove(Node *head, int position)
 {
-    // delete by position
+    // // delete by position
     if (position == 1)
     {
         // deleting first node
@@ -86,6 +86,7 @@ void Remove(Node *&head, int position)
         curr = nullptr;
         delete curr;
     }
+
 }
 void Display(Node *&head)
 {
@@ -148,7 +149,7 @@ int main()
         case 4:
         {
             int position;
-            cout << "Enter position: ";
+            cout << "Enter data: ";
             cin >> position;
             Remove(head, position);
             break;

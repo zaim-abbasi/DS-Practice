@@ -196,44 +196,6 @@ public:
             return root;
         }
 
-        // else if (data < root->data)
-        // {
-        //     root->left = Delete(root->left, data);
-        // }
-        // else if (data > root->data)
-        // {
-        //     root->right = Delete(root->right, data);
-        // }
-        // else
-        // {
-        //     if (root->right == nullptr && root->left == nullptr)
-        //     {
-        //         // Case 1: No Child
-        //         delete root;
-        //         return NULL;
-        //     }
-        //     else if (root->right != nullptr && root->left != nullptr)
-        //     {
-        //         // Case 3: Two Children
-        //         Node *temp = FindMin(root->right);
-        //         root->data = temp->data;
-        //         root->right = Delete(root->right, temp->data);
-        //     }
-        //     else
-        //     {
-        //         // Case 2: One Child
-        //         Node *temp = root;
-        //         if (root->left == nullptr)
-        //         {
-        //             root = root->right;
-        //         }
-        //         else
-        //         {
-        //             root = root->left;
-        //         }
-        //         delete temp;
-        //     }
-        // }
     }
 
     int RecursiveCounter(Node *root, int x, int counter)

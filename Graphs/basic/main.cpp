@@ -1,152 +1,85 @@
-// implementation of a graph using adjacency matrix
-
-#include <iostream>
+// implmentation of a graph using adjacency list
+#include<iostream>
 using namespace std;
-
-class Graph
-{
+class Node {
 public:
-    int **adjMatrix;
-    int numVertices;
-
-    Graph(int numVertices)
-    {
-        this->numVertices = numVertices;
-        adjMatrix = new int *[numVertices];
-        for (int i = 0; i < numVertices; i++)
-        {
-            adjMatrix[i] = new int[numVertices];
-            for (int j = 0; j < numVertices; j++)
-            {
-                adjMatrix[i][j] = 0;
-            }
-        }
-    }
-
-    void addEdge(int i, int j)
-    {
-        adjMatrix[i][j] = 1;
-        adjMatrix[j][i] = 1;
-    }
-
-    void removeEdge(int i, int j)
-    {
-        adjMatrix[i][j] = 0;
-        adjMatrix[j][i] = 0;
-    }
-
-    void print()
-    {
-        for (int i = 0; i < numVertices; i++)
-        {
-            cout << i << " : ";
-            for (int j = 0; j < numVertices; j++)
-            {
-                cout << adjMatrix[i][j] << " ";
-            }
-            cout << endl;
-        }
-    }
-
-    void PrintMaze()
-    {
-        // display the maze in a 2D grid format using colors to show the path. Show the connection from a node to another node using a line. 
-        
-
-        for (int i = 0; i < numVertices; i++)
-        {
-            cout << i << " : ";
-            for (int j = 0; j < numVertices; j++)
-            {
-                cout << adjMatrix[i][j] << " ";
-            }
-            cout << endl;
-        }
-
-        cout << endl;
-
-        for (int i = 0; i < numVertices; i++)
-        {
-            cout << i << " : ";
-            for (int j = 0; j < numVertices; j++)
-            {
-                if (adjMatrix[i][j] == 1)
-                {
-                    cout << "----";
-                }
-                else
-                {
-                    cout << "    ";
-                }
-            }
-            cout << endl;
-            cout << "     ";
-            for (int j = 0; j < numVertices; j++)
-            {
-                if (adjMatrix[i][j] == 1)
-                {
-                    cout << "|   ";
-                }
-                else
-                {
-                    cout << "    ";
-                }
-            }
-            cout << endl;
-        }
-
-        cout << endl;
-
-        for (int i = 0; i < numVertices; i++)
-        {
-            cout << i << " : ";
-            for (int j = 0; j < numVertices; j++)
-            {
-                if (adjMatrix[i][j] == 1)
-                {
-                    cout << "----";
-                }
-                else
-                {
-                    cout << "    ";
-                }
-            }
-            cout << endl;
-        }
-
-        cout << endl;
-
-        
-
-    }
-
-    ~Graph()
-    {
-        for (int i = 0; i < numVertices; i++)
-        {
-            delete[] adjMatrix[i];
-        }
-        delete[] adjMatrix;
+    int data;
+    Node* next;
+    Node(int data) {
+        this->data = data;
+        this->next = NULL;
     }
 };
 
+class Graph {
+    int V;
+    Node** adjList;
+public:
+    Graph(int V) {
+        this->V = V;
+        adjList = new Node*[V];
+        for(int i=0;i<V;i++) {
+            adjList[i] = NULL;
+        }
+    }
+    
+    void addEdge(int u,int v) {
+        Node* n = new Node(v);
+        n->next = adjList[u];
+        adjList[u] = n;
+        n = new Node(u);
+        n->next = adjList[v];
+        adjList[v] = n;
+    }
+    void print() {
+        for(int i=1;i<=V;i++) {
+            cout<<i<<"->";
+            Node* temp = adjList[i];
+            while(temp!=NULL) {
+                if(temp->next == NULL)
+                    cout<<"NULL";
+                else
+                cout<<temp->data<<"->";
+                temp = temp->next;
+            }
+            cout<<endl;
+        }
+    }
+};
 int main()
 {
-    // hard code to make a 2 by 2 maze like structure using some specific formula to generate a new graph each time the program is executed. Also there should be a path from first node to last node.
-
-    Graph g(4);
-    g.addEdge(0, 1);
-    g.addEdge(1, 2);
-    g.addEdge(2, 3);
-    // g.addEdge(3, 0);
-    g.addEdge(0, 2);
-    g.addEdge(1, 3);
-    
-    
-
-
-    g.PrintMaze();
-
-
+    int choice;
+    cout<<"Enter the number of vertices: ";
+    int V;
+    cin>>V;
+    Graph g(V);
+    while(true)
+    {
+        cout<<"1. Add Edge"<<endl;
+        cout<<"2. Print Graph"<<endl;
+        cout<<"3. Exit"<<endl;
+        cout<<"Enter your choice: ";
+        cin>>choice;
+        switch(choice) {
+            case 1: {
+                int u,v;
+                cout<<"Enter the vertices: ";
+                cin>>u>>v;
+                g.addEdge(u,v);
+                break;
+            }
+            case 2: {
+                g.print();
+                break;
+            }
+            case 3: {
+                exit(0);
+                break;
+            }
+            default: {
+                cout<<"Invalid Choice"<<endl;
+            }
+        }
+    }
     return 0;
 }

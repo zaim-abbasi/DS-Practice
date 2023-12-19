@@ -214,6 +214,7 @@ public:
         cout << RecursiveCounter(root, x, counter) << endl;
     }
 };
+
 int main()
 {
     // full fledged menu driven program

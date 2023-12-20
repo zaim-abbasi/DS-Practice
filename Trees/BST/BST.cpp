@@ -100,7 +100,6 @@ public:
         return false;
     }
 
-
     Node *FindMin(Node *root)
     {
         Node *temp = root;
@@ -113,28 +112,28 @@ public:
 
     Node *Delete(Node *root, int data)
     {
-        if(root == NULL)
+        if (root == NULL)
             return root;
-        else if(data < root->data)
+        else if (data < root->data)
             root->left = Delete(root->left, data);
-        else if(data > root->data)
+        else if (data > root->data)
             root->right = Delete(root->right, data);
         else
         {
             // Case 1: No Child
-            if(root->left == NULL && root->right == NULL)
+            if (root->left == NULL && root->right == NULL)
             {
                 delete root;
                 root = NULL;
             }
             // Case 2: One Child
-            else if(root->left == NULL)
+            else if (root->left == NULL)
             {
                 Node *temp = root;
                 root = root->right;
                 delete temp;
             }
-            else if(root->right == NULL)
+            else if (root->right == NULL)
             {
                 Node *temp = root;
                 root = root->left;
@@ -170,9 +169,9 @@ public:
     }
 
     // count number of nodes in a tree
-    int NodeCounter(Node* root, int counter)
+    int NodeCounter(Node *root, int counter)
     {
-        if(root == NULL)
+        if (root == NULL)
             return counter;
         counter = NodeCounter(root->left, counter);
         counter++;
@@ -181,7 +180,7 @@ public:
         return counter; // Add return statement
     }
 
-    void NodeCount(Node* root)
+    void NodeCount(Node *root)
     {
         cout << "Total Nodes are " << NodeCounter(root, 0) << endl;
     }
@@ -194,7 +193,6 @@ public:
         cout << root->data << " ";
         display(root->right);
     }
-
 };
 
 int main()

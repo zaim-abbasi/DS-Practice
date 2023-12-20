@@ -94,7 +94,7 @@ public:
         Display(root->right);
     }
 
-    int sizeCounter(Node* root)
+    int sizeCounter(Node *root)
     {
         Node *temp = root;
         static int size = 0;
@@ -106,7 +106,7 @@ public:
 
         return size;
     }
-    int Sort(Node* root)
+    int Sort(Node *root)
     {
         static int counter = 0;
         static int size = sizeCounter(root);

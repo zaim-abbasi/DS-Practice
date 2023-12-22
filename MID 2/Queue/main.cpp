@@ -1,6 +1,7 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class Queue{
+class Queue
+{
 public:
     int *arr;
     int size;
@@ -18,25 +19,25 @@ public:
 
     bool isFull()
     {
-        if(numItems == size)
+        if (numItems == size)
             return true;
         return false;
     }
 
     bool isEmpty()
     {
-        if(numItems == 0)
+        if (numItems == 0)
             return true;
         return false;
     }
 
     void Enqueue(int num)
     {
-        if(isFull())
+        if (isFull())
             cout << "Queue is full" << endl;
         else
         {
-            rear = (rear+1)%size;
+            rear = (rear + 1) % size;
             arr[rear] = num;
             numItems++;
         }
@@ -44,13 +45,12 @@ public:
 
     void Dequeue()
     {
-        if(isEmpty())
+        if (isEmpty())
             cout << "Queue is empty" << endl;
         else
         {
-            front = (front+1)%size;
+            front = (front + 1) % size;
             numItems--;
         }
     }
-
 };

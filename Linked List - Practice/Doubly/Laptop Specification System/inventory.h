@@ -1,7 +1,9 @@
 #include "node.h"
-class Inventory{
+class Inventory
+{
 private:
     Node *head;
+
 public:
     Inventory()
     {
@@ -18,11 +20,11 @@ public:
         cin >> model;
         cout << "Enter Price: ";
         cin >> price;
-        
+
         Laptop LaptopObj(brand, model, price);
         Node *temp = new Node(LaptopObj);
 
-        if(head == nullptr)
+        if (head == nullptr)
         {
             head = temp;
         }
@@ -87,10 +89,10 @@ public:
     void Display()
     {
         Node *temp = head;
-        while(temp != nullptr)
+        while (temp != nullptr)
         {
-            cout << "Brand: " << temp->GetLaptopObj().GetBrand() <<endl;
-            cout << "Model: " << temp->GetLaptopObj().GetModel() <<endl;
+            cout << "Brand: " << temp->GetLaptopObj().GetBrand() << endl;
+            cout << "Model: " << temp->GetLaptopObj().GetModel() << endl;
             cout << "Price: " << temp->GetLaptopObj().GetPrice() << endl;
             cout << endl;
             temp = temp->GetNext();

@@ -1,6 +1,7 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class Node{
+class Node
+{
 public:
     int data;
     Node *next;
@@ -10,7 +11,8 @@ public:
         next = NULL;
     }
 };
-class Queue{
+class Queue
+{
 public:
     Node *front;
     Node *rear;
@@ -22,14 +24,14 @@ public:
     }
     bool isEmpty()
     {
-        if(numItems == 0)
+        if (numItems == 0)
             return true;
         return false;
     }
     void Enqueue(int num)
     {
         Node *newNode = new Node(num);
-        if(isEmpty())
+        if (isEmpty())
             front = rear = newNode;
         else
         {
@@ -40,7 +42,7 @@ public:
     }
     void Dequeue()
     {
-        if(isEmpty())
+        if (isEmpty())
             cout << "Queue is empty" << endl;
         else
         {
@@ -53,7 +55,7 @@ public:
     void Display()
     {
         Node *temp = front;
-        while(temp != NULL)
+        while (temp != NULL)
         {
             cout << temp->data << " ";
             temp = temp->next;

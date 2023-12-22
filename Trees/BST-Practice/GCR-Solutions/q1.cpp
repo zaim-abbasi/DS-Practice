@@ -1,7 +1,6 @@
 // Binary Search Tree into a sorted doubly linked list in - place.The head of the doubly linked list should be the smallest element.
 #include <iostream>
 using namespace std;
-
 class Node
 {
 public:

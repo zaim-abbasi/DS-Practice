@@ -28,6 +28,23 @@ int BinarySearchRecursive(int arr[], int low, int high, int key)
     if (arr[mid] < key)
         return BinarySearchRecursive(arr, mid + 1, high, key);
 }
+
+int InsertionSort(int arr[], int size)
+{
+    int i, j, key;
+    for (i = 1; i < size; i++)
+    {
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && key < arr[j])
+        {
+            // shift elements to right
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
 int main()
 {
     int size, key;

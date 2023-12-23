@@ -45,6 +45,24 @@ int InsertionSort(int arr[], int size)
         arr[j + 1] = key;
     }
 }
+
+int SelectionSort(int arr[], int size)
+{
+    int i, j, minIndex;
+    for (i = 0; i < size - 1; i++)
+    {
+        minIndex = i;
+        for (j = i + 1; j < size; j++)
+        {
+            if (arr[j] < arr[minIndex])
+                minIndex = j;
+        }
+        // swap
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
 int main()
 {
     int size, key;

@@ -1,5 +1,6 @@
 #include "node.h"
-class DoublyCircular{
+class DoublyCircular
+{
 public:
     Node *head;
     DoublyCircular()
@@ -10,12 +11,13 @@ public:
     void Display()
     {
         Node *temp = head;
-        do{
+        do
+        {
             cout << temp->data << " ";
             temp = temp->next;
         } while (temp != head);
     }
-    
+
     void InsertEnd()
     {
         int data;
@@ -24,7 +26,7 @@ public:
         Node *temp = new Node(data);
 
         Node *travserse = head;
-        while(travserse->next != head)
+        while (travserse->next != head)
         {
             travserse = travserse->next;
         }
@@ -34,8 +36,6 @@ public:
         head->prev = temp;
     }
 
-
-
     void AddElement()
     {
         int data;
@@ -43,7 +43,7 @@ public:
         cin >> data;
         Node *temp = new Node(data);
 
-        if(head == nullptr)
+        if (head == nullptr)
         {
             // list empty ha
             head = temp;
@@ -55,7 +55,7 @@ public:
         {
             // traverse karna ha
             Node *travsere = head;
-            while(travsere->next != head)
+            while (travsere->next != head)
             {
                 travsere = travsere->next;
             }
@@ -69,11 +69,11 @@ public:
     void BubbleSort()
     {
         Node *i, *j;
-        for(i = head; i->next != head; i = i->next)
+        for (i = head; i->next != head; i = i->next)
         {
-            for(j = head; j->next != head; j = j->next)
+            for (j = head; j->next != head; j = j->next)
             {
-                if(j->next->data < j->data)
+                if (j->next->data < j->data)
                 {
                     swap(j->next->data, j->data);
                 }
@@ -83,12 +83,12 @@ public:
     void SelectionSort()
     {
         Node *i, *j, *min;
-        for(i = head; i->next != head; i = i->next)
+        for (i = head; i->next != head; i = i->next)
         {
             min = i;
-            for(j = i->next; j != head; j = j->next)
+            for (j = i->next; j != head; j = j->next)
             {
-                if(j->data < min->data)
+                if (j->data < min->data)
                 {
                     min = j;
                 }

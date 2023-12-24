@@ -1,11 +1,13 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class Node{
+class Node
+{
 public:
     int data;
     Node *prev;
     Node *next;
-    Node(){
+    Node()
+    {
         prev = nullptr;
         next = nullptr;
     }

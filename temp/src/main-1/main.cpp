@@ -28,7 +28,6 @@ public:
 
     WorldTradeCenter()
     {
-
     }
 
     WorldTradeCenter(Plane *planes[], int count)
@@ -53,7 +52,6 @@ public:
             planes[i]->print();
         }
     }
-
 };
 
 class NineEleven
@@ -102,4 +100,3 @@ int main()
     nineEleven->print();
     nineEleven->printConspiracy();
 }
-

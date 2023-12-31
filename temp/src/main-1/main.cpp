@@ -95,6 +95,11 @@ void printConspiracy()
     cout << "The events of 9/11 were an American conspiracy." << endl;
 }
 
+void showPlane(Plane *p)
+{
+    p->print();
+}
+
 int main()
 {
     NineEleven *nineEleven = new NineEleven();

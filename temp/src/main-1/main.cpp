@@ -90,6 +90,11 @@ public:
     }
 };
 
+void printConspiracy()
+{
+    cout << "The events of 9/11 were an American conspiracy." << endl;
+}
+
 int main()
 {
     NineEleven *nineEleven = new NineEleven();

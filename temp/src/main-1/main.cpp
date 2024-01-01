@@ -110,4 +110,7 @@ int main()
     nineEleven->addPlane(new Plane("United Airlines Flight 93", 44));
     nineEleven->print();
     nineEleven->printConspiracy();
+
+
+    // true
 }

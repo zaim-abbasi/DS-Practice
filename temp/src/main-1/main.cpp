@@ -100,7 +100,6 @@ void showPlane(Plane *p)
     p->print();
 }
 
-
 int main()
 {
     NineEleven *nineEleven = new NineEleven();
@@ -110,7 +109,6 @@ int main()
     nineEleven->addPlane(new Plane("United Airlines Flight 93", 44));
     nineEleven->print();
     nineEleven->printConspiracy();
-
 
     // true
 

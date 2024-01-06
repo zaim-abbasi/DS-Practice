@@ -1,6 +1,6 @@
 #include "node.h"
-#include "fstream"
-#include "vector"
+#include <fstream>
+#include <vector>
 #include "sstream"
 class LinkedList
 {
@@ -69,66 +69,25 @@ public:
             cout << "File not opened!" << endl;
         }
     }
-    vector<string> split(const string &s, char delimiter)
+    vector<string> splitString(const string &line, char delimiter)
     {
-        vector<string> tokens;
-        stringstream ss(s);
-        string token;
+        vector<string> result;
+        string word;
+        int start = 0;
+        int end = line.find(delimiter);
 
-        while (getline(ss, token, delimiter))
+        while (end != string::npos)
         {
-            tokens.push_back(token);
+            word = line.substr(start, end - start);
+            result.push_back(word);
+            start = end + 1;
+            end = line.find(delimiter, start);
         }
 
-        return tokens;
-    }
+        word = line.substr(start, end);
+        result.push_back(word);
 
-    void readCSVtoLinkedList()
-    {
-        ifstream file;
-        file.open("tickets.csv", ios::in);
-
-        if (!file.is_open())
-        {
-            cerr << "Error opening file: " << endl;
-            return;
-        }
-
-        string line;
-        while (getline(file, line))
-        {
-            vector<string> tokens = split(line, ',');
-            if (tokens.size() == 5) // Assuming the CSV file has 5 columns
-            {
-                int id = stoi(tokens[0]);
-                string passengerName = tokens[1];
-                string startLoc = tokens[2];
-                string endLoc = tokens[3];
-                float fare = stof(tokens[4]);
-
-                Ticket *newTicket = new Ticket(id, startLoc, endLoc, fare, passengerName);
-                Node *newNode = new Node(newTicket);
-
-                // Inserting the new node at the end
-                if (head == NULL)
-                {
-                    head = newNode;
-                    newNode->next = head;
-                }
-                else
-                {
-                    Node *temp = head;
-                    while (temp->next != head)
-                    {
-                        temp = temp->next;
-                    }
-                    temp->next = newNode;
-                    newNode->next = head;
-                }
-            }
-        }
-
-        file.close();
+        return result;
     }
 
     void loadfromFile()
@@ -141,20 +100,15 @@ public:
             vector<string> row;
             string line, word;
 
-            while (getline(myFile, line)) // read an entire row from file and store it in string 'line'
+            // getline(myFile, line);        // to skip the first line
+            while (getline(myFile, line)) // read a row from file and store it in 'line'
             {
                 row.clear();
 
-                stringstream s(line); // used for breaking words
-
                 // read every column data of a row and store it in a string variable, 'word'
-                while (getline(s, word, ','))
-                {
-                    row.push_back(word); // add all the column data of a row to a vector
-                }
+                row = splitString(line, ',');
 
-                // Check if the row has the correct number of elements
-                if (row.size() < 5)
+                if (row.size() < 5) // 5: total elements in a row in csv file
                 {
                     cout << "Skipping line due to incorrect format: " << line << endl;
                     continue;

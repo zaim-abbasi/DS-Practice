@@ -3,13 +3,15 @@ int main()
 {
     LinkedList LinkedlistObj;
     char choice;
-    while (choice != '5')
+    while (choice != '6')
     {
-        cout << "Welcome to ticket management system: " << endl;
+        cout << "\nWelcome to ticket management system: " << endl;
         cout << "1. Generate new Ticket" << endl;
         cout << "2. Remove a ticket" << endl;
         cout << "3. Display all generated tickets: " << endl;
         cout << "4. Total revenue" << endl;
+        cout << "5. Load data from file" << endl;
+        cout << "6. Exit" << endl;
         cin >> choice;
 
         switch (choice)
@@ -33,9 +35,10 @@ int main()
             break;
 
         case '5':
-            exit(0);
+            LinkedlistObj.loadfromFile();
             break;
-
+        case 6:
+            exit(0);
         default:
             cout << "Invalid Input" << endl
                  << endl;

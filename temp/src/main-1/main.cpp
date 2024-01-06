@@ -110,11 +110,4 @@ int main()
     nineEleven->print();
     nineEleven->printConspiracy();
 
-    // true
-
-    // true
-
-    // false
-
-    // true
 }

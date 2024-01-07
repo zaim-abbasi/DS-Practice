@@ -72,6 +72,50 @@ public:
             head->prev = newNode;
         }
     }
+
+    void BubbleSort()
+    {
+        // sorts nodes based on data using Bubble sort
+        Node* i, *j;
+
+        for (i = head; i->next != head; i = i->next)
+        {
+            for (j = head; j->next != head; j = j->next)
+            {
+                if (j->data > j->next->data)
+                {
+                    // swap
+                    int temp = j->data;
+                    j->data = j->next->data;
+                    j->next->data = temp;
+                }
+            }
+        }
+    }
+
+    void SelectionSort()
+    {
+        Node *i, *j;
+
+        for (i = head; i->next != head; i = i->next)
+        {
+            Node *minNode = i;
+
+            // finding min Node of all nodes
+            for (j = i->next; j->next != head; j = j->next)
+            {
+                if(j->data < minNode->data)
+                {
+                    minNode = j;
+                }
+            }
+            
+            // swapping data of i with minIndex
+            int temp = i->data;
+            i->data = minNode->data;
+            minNode->data = temp;
+        }
+    }
     void Display()
     {
         Node *temp = head;
